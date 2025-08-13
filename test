@@ -1,7 +1,42 @@
-if __name__ == '__main__':
-    # rospy.init_node('Lateral_Control',anonymous=True)     
+#!/usr/bin/env python3
+import rospy                                         
+from std_msgs.msg import Float64MultiArray,Float64
+import csv      
+import math
+import can
+import os
+import time
 
-    # try:
-    #     my_subs = main()                 
-    # except rospy.ROSInterruptException:
-    #     pass     
+class main(object):                        
+
+    def __init__(self):                         
+        rospy.spin()                   
+
+    def Realtime_XY_callback(self,msg):   
+            print(round(self.x_east,2),'||' ,round(self.y_north,2),'||'  ,self.Track,'|| cte = ' ,round(self.cte,2),'|| Yaw = ' ,round(self.yaw_control,2))
+                    
+    def Select_Track(self):
+            self.kd = 38  
+
+    def cte_current(self):
+                self.yaw_control = 0  
+
+    def pid_angle(self):
+        self.yaw_expect = (-1)*(self.P + self.I + self.D)
+
+    def angle_controlMotor(self):
+            self.yaw_control = 0               
+                 
+    def Talker(self):                          
+        rospy.loginfo('Publishing Speed SetPoint : %s',Speed_SP.data) 
+
+    def CreateCSV(self):
+            print("Stop...")     
+
+if __name__ == '__main__':
+    rospy.init_node('Lateral_Control',anonymous=True)     
+
+    try:
+        my_subs = main()                 
+    except rospy.ROSInterruptException:
+        pass                            
