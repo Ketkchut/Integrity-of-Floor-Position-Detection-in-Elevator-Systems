@@ -1,0 +1,7 @@
+if __name__ == '__main__':
+    # rospy.init_node('Lateral_Control',anonymous=True)     
+
+    # try:
+    #     my_subs = main()                 
+    # except rospy.ROSInterruptException:
+    #     pass     
